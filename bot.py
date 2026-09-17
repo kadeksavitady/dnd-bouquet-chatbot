@@ -29,6 +29,7 @@ client = Groq(api_key=GROQ_API_KEY)
 MAX_HISTORY_MESSAGES = 20   # jumlah pesan (user+assistant) yang disimpan, di luar system prompt
 RATE_LIMIT_SECONDS = 3      # jeda minimum antar pesan per user
 HISTORY_DIR = "chat_histories"
+GROQ_MODEL = os.environ.get("GROQ_MODEL", "qwen/qwen3.8-27b")  # bisa diganti lewat env var tanpa edit kode
 
 os.makedirs(HISTORY_DIR, exist_ok=True)
 
@@ -121,7 +122,7 @@ def handle_message(message):
     try:
         response = client.chat.completions.create(
             messages=user_histories[chat_id],
-            model="qwen/qwen3.8-27b",
+            model=GROQ_MODEL,
             temperature=0.7,
         )
 
