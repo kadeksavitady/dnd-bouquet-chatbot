@@ -6,8 +6,9 @@ Proyek ini disusun sebagai pemenuhan tugas Lab 01: *Simple Chatbot with Groq API
 
 ## Fitur Utama
 
-- **Integrasi Groq API:** Menggunakan model `openai/gpt-oss-120b` (via Groq API) untuk memproses pesan dan menghasilkan teks balasan berbahasa Indonesia sesuai instruksi (*system prompt*). Model dapat diganti lewat environment variable `GROQ_MODEL` tanpa mengubah kode.
+- **Integrasi Groq API:** Menggunakan model `qwen/qwen3.8-27b` (via Groq API) untuk memproses pesan dan menghasilkan teks balasan berbahasa Indonesia sesuai instruksi (*system prompt*). Model dapat diganti lewat environment variable `GROQ_MODEL` tanpa mengubah kode.
 - **Manajemen Konteks Percakapan:** Chatbot mengingat konteks obrolan per pengguna. Sistem otomatis membatasi memori maksimal 20 pesan terakhir untuk mencegah *error token limit* dan menghemat biaya API.
+- **Redirect ke Instagram untuk Konten Visual:** Karena bot tidak bisa mengirim gambar, jika pelanggan minta lihat foto/katalog/desain produk, bot otomatis mengarahkan ke akun Instagram [@dnd.bouquett](https://www.instagram.com/dnd.bouquett/) dengan kalimat yang tetap nyambung ke konteks percakapan.
 - **Penyimpanan Riwayat Percakapan:** Setiap sesi percakapan disimpan lokal dalam format `.json` di folder `chat_histories/`, dan dimuat ulang otomatis saat bot di-restart.
 - **Proteksi Spam (Rate Limiting):** Ada jeda minimum 3 detik antar pesan per pengguna untuk mencegah spam ke API Groq.
 - **Penanganan Tipe Media:** Bot hanya merespons pesan teks. Pesan foto, dokumen, stiker, voice note, dll. dibalas dengan pesan standar tanpa membuat bot error.
@@ -76,7 +77,7 @@ Beberapa parameter bisa disesuaikan langsung di `bot.py` atau lewat environment 
 
 | Variabel               | Default                | Keterangan                                         |
 |-------------------------|--------------------------|------------------------------------------------------|
-| `GROQ_MODEL`            | `openai/gpt-oss-120b`   | Model Groq yang digunakan                            |
+| `GROQ_MODEL`            | `qwen/qwen3.8-27b`      | Model Groq yang digunakan                            |
 | `MAX_HISTORY_MESSAGES`  | `20`                    | Jumlah pesan terakhir yang disimpan sebagai konteks  |
 | `RATE_LIMIT_SECONDS`    | `3`                     | Jeda minimum antar pesan per pengguna                |
 | `HISTORY_DIR`           | `chat_histories`        | Folder penyimpanan riwayat chat                      |
