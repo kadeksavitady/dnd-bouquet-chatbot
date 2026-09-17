@@ -124,6 +124,7 @@ def handle_message(message):
             messages=user_histories[chat_id],
             model=GROQ_MODEL,
             temperature=0.7,
+            reasoning_effort="default",
         )
 
         bot_reply = response.choices[0].message.content
